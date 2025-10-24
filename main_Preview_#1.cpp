@@ -113,19 +113,9 @@ void Terminal_DOS(){
 			delay(2000);  // 缩短关机等待时间，提升体验
 			exit(0);
 		} 
-		else if (cmd == "help") {
-			cout << "Available cmds:" << endl;
-			cout << "  Windows 10 cmd - Open Windows cmd prompt (Windows only)" << endl;
-			cout << "  change_path ADMIN:\\114514 - Change working directory" << endl;
-			cout << "  account ADMIN - Switch to admin account" << endl;
-			cout << "  time - Show current time" << endl;
-			cout << "  desktop - Clear screen and show desktop" << endl;
-			cout << "  shut down - Shutdown system" << endl;
-			cout << "  help - Show this help message" << endl;
-			delay(3000);
-		}
+		
 		else if (!cmd.empty()) {
-			cout << "Unknown cmd. Type 'help' to see available cmds." << endl;
+			cout << "Unknown command." << endl;
 			delay(1000);
 		}
 	}
