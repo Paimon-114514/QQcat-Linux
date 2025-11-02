@@ -1,77 +1,93 @@
-# QQcat-Linux 旧版本介绍 / QQcat-Linux Old Version Introduction / Présentation de la ancienne version de QQcat-Linux
+# QQcat-Linux 优化版介绍 / QQcat-Linux Optimized Version Introduction / Présentation de la version optimisée de QQcat-Linux
 
 ## 概述 (Overview / Aperçu)
-QQcat-Linux 旧版本是一个基础的DOS系统模拟程序，提供简单的系统启动、登录验证和命令交互功能，可模拟DOS环境下的基本操作流程。
+QQcat-Linux 是一个模拟DOS系统的轻量级程序，经过优化后，代码结构更清晰、功能更完善、用户体验更流畅，同时具备更好的跨平台兼容性。
 
-QQcat-Linux old version is a basic DOS system simulation program that provides simple system startup, login verification and command interaction functions, which can simulate basic operation processes in DOS environment.
+QQcat-Linux is a lightweight program simulating a DOS system. After optimization, it has a clearer code structure, more complete functions, smoother user experience, and better cross-platform compatibility.
 
-La vieille version de QQcat-Linux est un programme de simulation de système DOS de base, offrant des fonctions simples de démarrage du système, de vérification de connexion et d'interaction par commandes, capable de simuler les processus opérationnels de base dans un environnement DOS.
+QQcat-Linux est un programme léger simulant un système DOS. Après optimisation, il présente une structure de code plus claire, des fonctions plus complètes, une expérience utilisateur plus fluide et une meilleure compatibilité multiplateforme.
 
-## 核心功能 (Core Features / Fonctionnalités principales)
+## 主要优化点 (Key Optimizations / Principales optimisations)
 
-### 1. 系统启动流程 (System Startup Process / Processus de démarrage du système)
-- 启动时显示"Starting"提示，并伴随10个进度点动画
-- 使用`sleep`函数实现启动延迟效果
-- 启动完成后自动清屏并进入登录界面
+### 1. 代码结构优化 (Code Structure Optimization / Optimisation de la structure du code)
+- 将功能模块化，拆分为多个独立函数（清屏、延时、登录验证等）
+- 常量集中管理，便于维护和修改
+- 添加详细注释，提高代码可读性
 
-- Displays "Starting" prompt on startup with 10 progress dots animation
-- Uses `sleep` function to achieve startup delay effect
-- Automatically clears screen and enters login interface after startup
+- Modularized functions, split into multiple independent functions (screen clearing, delay, login verification, etc.)
+- Centralized management of constants for easy maintenance and modification
+- Added detailed comments to improve code readability
 
-- Affiche le message "Starting" au démarrage avec une animation de 10 points de progression
-- Utilise la fonction `sleep` pour obtenir un effet de délai de démarrage
-- Efface automatiquement l'écran et accède à l'interface de connexion après le démarrage
+- Modularisation des fonctions, divisées en plusieurs fonctions indépendantes (effacement de l'écran, délai, vérification de connexion, etc.)
+- Gestion centralisée des constantes pour une maintenance et une modification faciles
+- Ajout de commentaires détaillés pour améliorer la lisibilité du code
 
-### 2. 登录验证 (Login Verification / Vérification de connexion)
-- 提供简单的用户名/密码验证机制
-- 内置用户数据库，默认用户"root"的密码与系统名相同
-- 登录失败时支持重新输入用户名和密码
+### 2. 功能增强 (Function Enhancement / Amélioration des fonctions)
+- 增加登录失败次数限制（最多3次尝试）
+- 添加`help`命令，显示所有可用指令
+- 完善时间显示功能，输出人类可读的时间格式
+- 扩展用户体系，增加默认普通用户
 
-- Provides simple username/password verification mechanism
-- Built-in user database, the password of default user "root" is the same as the system name
-- Supports re-entering username and password when login fails
+- Added login failure limit (maximum 3 attempts)
+- Added `help` command to display all available instructions
+- Improved time display function to output human-readable time format
+- Expanded user system with additional default regular users
 
-- Offre un mécanisme simple de vérification nom d'utilisateur/mot de passe
-- Base de données utilisateurs intégrée, le mot de passe de l'utilisateur par défaut "root" est identique au nom du système
-- Prend en charge la réentrée du nom d'utilisateur et du mot de passe en cas d'échec de connexion
+- Ajout d'une limite de tentatives de connexion échouées (maximum 3 tentatives)
+- Ajout de la commande `help` pour afficher toutes les instructions disponibles
+- Amélioration de la fonction d'affichage de l'heure pour produire un format lisible par l'homme
+- Extension du système d'utilisateurs avec des utilisateurs réguliers par défaut supplémentaires
 
-### 3. DOS命令交互 (DOS Command Interaction / Interaction par commandes DOS)
-- 支持基础命令操作，包括：
-  - `Windows 10 command`：打开Windows命令提示符
-  - `change_path ADMIN:\\114514`：更改当前路径
-  - `account ADMIN`：切换到管理员账户（密码为"admin"）
-  - `time`：显示当前时间戳
-  - `desktop`：清屏并显示桌面标识
-  - `shut down`：关闭模拟系统
+### 3. 用户体验改进 (User Experience Improvement / Amélioration de l'expérience utilisateur)
+- 优化输入输出流程，减少不必要的屏幕刷新
+- 增加操作反馈信息和状态提示
+- 缩短关机等待时间，提升使用效率
+- 显示剩余登录尝试次数，增强用户感知
 
-- Supports basic command operations, including:
-  - `Windows 10 command`: Open Windows command prompt
-  - `change_path ADMIN:\\114514`: Change current path
-  - `account ADMIN`: Switch to admin account (password is "admin")
-  - `time`: Display current timestamp
-  - `desktop`: Clear screen and display desktop identifier
-  - `shut down`: Shut down the simulation system
+- Optimized input and output processes to reduce unnecessary screen refreshes
+- Added operation feedback and status prompts
+- Shortened shutdown waiting time to improve efficiency
+- Displayed remaining login attempts to enhance user perception
 
-- Prend en charge les opérations de commande de base, y compris :
-  - `Windows 10 command` : Ouvrir l'invite de commandes Windows
-  - `change_path ADMIN:\\114514` : Changer le chemin actuel
-  - `account ADMIN` : Passer au compte administrateur (mot de passe "admin")
-  - `time` : Afficher le timestamp actuel
-  - `desktop` : Effacer l'écran et afficher l'identifiant du bureau
-  - `shut down` : Arrêter le système de simulation
+- Optimisation des processus d'entrée et de sortie pour réduire les rafraîchissements d'écran inutiles
+- Ajout de commentaires d'opération et d'indicateurs d'état
+- Réduction du temps d'attente d'arrêt pour améliorer l'efficacité
+- Affichage des tentatives de connexion restantes pour améliorer la perception de l'utilisateur
 
-## 技术特点 (Technical Features / Caractéristiques techniques)
-- 使用C++标准库实现基本功能，依赖较少
-- 采用简单的全局变量存储用户数据和系统状态
-- 通过`system`函数实现清屏等系统操作
-- 基础的循环结构实现命令行交互逻辑
+### 4. 跨平台兼容性 (Cross-platform Compatibility / Compatibilité multiplateforme)
+- 修复原代码中平台相关的宏定义错误
+- 使用C++11标准库实现跨平台延时功能
+- 对Windows特定命令增加平台判断，避免在非Windows系统出错
 
-- Uses C++ standard library to implement basic functions with few dependencies
-- Uses simple global variables to store user data and system status
-- Implements system operations such as screen clearing through `system` function
-- Basic loop structure implements command line interaction logic
+- Fixed platform-related macro definition errors in the original code
+- Implemented cross-platform delay function using C++11 standard library
+- Added platform checks for Windows-specific commands to avoid errors on non-Windows systems
 
-- Utilise la bibliothèque standard C++ pour implémenter des fonctions de base avec peu de dépendances
-- Utilise de simples variables globales pour stocker les données utilisateur et l'état du système
-- Implémente des opérations système telles que l'effacement de l'écran via la fonction `system`
-- Structure de boucle de base implémentant la logique d'interaction en ligne de commande
+- Correction des erreurs de définition de macros liées à la plateforme dans le code original
+- Mise en œuvre d'une fonction de délai multiplateforme à l'aide de la bibliothèque standard C++11
+- Ajout de vérifications de plateforme pour les commandes spécifiques à Windows afin d'éviter les erreurs sur les systèmes non Windows
+
+## 支持的命令 (Supported Commands / Commandes prises en charge)
+- `Windows 10 command` - 打开Windows命令提示符（仅Windows系统）
+- `change_path ADMIN:\\114514` - 更改工作目录
+- `account ADMIN` - 切换到管理员账户
+- `time` - 显示当前时间
+- `desktop` - 清屏并显示桌面
+- `shut down` - 关闭系统
+- `help` - 显示帮助信息
+
+- `Windows 10 command` - Open Windows command prompt (Windows only)
+- `change_path ADMIN:\\114514` - Change working directory
+- `account ADMIN` - Switch to admin account
+- `time` - Show current time
+- `desktop` - Clear screen and show desktop
+- `shut down` - Shutdown system
+- `help` - Show help information
+
+- `Windows 10 command` - Ouvrir l'invite de commandes Windows (seulement Windows)
+- `change_path ADMIN:\\114514` - Changer le répertoire de travail
+- `account ADMIN` - Passer au compte administrateur
+- `time` - Afficher l'heure actuelle
+- `desktop` - Effacer l'écran et afficher le bureau
+- `shut down` - Arrêter le système
+- `help` - Afficher les informations d'aide
