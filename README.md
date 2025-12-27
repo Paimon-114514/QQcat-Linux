@@ -1,6 +1,6 @@
 # QQcat-Linux V1.2(Stable Version) Terminal Emulator  
 # QQcat-Linux V1.2(稳定版本) 终端模拟器  
-
+## This repo requires nlohmann.(Built-in)
 ## Introduction / 项目简介  
 A simple terminal emulator program that simulates basic functions of a Linux-like terminal, supporting user login, command execution, directory management, and other operations. It is cross-platform and can run on Windows and Unix-like systems (such as Linux, macOS).  
 这是一个简易的终端模拟器程序，模拟了类Linux终端的基本功能，支持用户登录、命令执行、目录管理等操作。程序具有跨平台特性，可在Windows和类Unix系统（如Linux、macOS）上运行。  
