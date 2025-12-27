@@ -1,36 +1,10 @@
-#include <bits/stdc++.h>
+#include </home/wangjy/repos/QQcat-Linux/main_StableVer/SystemFunc.hpp>
 using namespace std;
 
-// 跨平台清屏命令定义
-#ifdef _WIN32
-#include <windows.h>
-#define clear_cmd "cls"
-#else 
-#include <termios.h>
-#define clear_cmd "clear"
-#endif
-
-// 跨平台终端命令定义
-#ifdef _WIN32
-#define Terminal_cmd "cmd"
-#else
-#define Terminal_cmd "bash"
-#endif
-
-// 工具函数：延时（毫秒）
-void delay(int ms) {
-    this_thread::sleep_for(chrono::milliseconds(ms));
-}
-
-// 工具函数：刷新输出屏幕与缓冲区
-void flush(){
-	system(clear_cmd);
-	fflush(stdin);
-	fflush(stdout);
-}
 
 // 登录界面+终端内容显示
 string Terminal_name = "QQcat-Linux V1.2(Preview #1)";
+const string USERS_JSON_FILE = "users.json";
 map<string, string> user_to_password_db;
 map<string, bool> user_available;
 map<string, bool> dir_available;
@@ -59,8 +33,8 @@ void Terminal_DOS(){
 		cin >> cmd; 
 		// 唤起系统终端
 		if (cmd == "systerminal") {
-			printf("This command is not available!\n");
-			// system(Terminal_cmd);
+			// printf("This command is not available!\n");
+			system(Terminal_cmd);
     	} // 切换目录
 		else if (cmd == "cd") {
 			string newpath;
@@ -85,7 +59,7 @@ void Terminal_DOS(){
 			else {
 				string pwd;
 				cin >> pwd;
-				if(user_to_password_db[newuser] == pwd)
+				if(user_to_password_db[newuser] == hash_password(pwd))
 					logged_user = newuser;
 			}
 		} 
@@ -97,7 +71,8 @@ void Terminal_DOS(){
 			cout << "Enter password for " << newus << " :";
 			cin >> newup;
 			user_available[newus] = 1;
-			user_to_password_db[newus] = newup;
+			user_to_password_db[newus] = hash_password(newup);
+			save_users_to_json(user_to_password_db, USERS_JSON_FILE);
 		}
 		else if (cmd == "time") {
 			time_t now = time(0);
@@ -113,6 +88,21 @@ void Terminal_DOS(){
 			delay(2000);  // 缩短关机等待时间，提升体验
 			exit(0);
 		} 
+		else if(cmd == "cat"){
+			char a[]={0};
+			cin >> a;
+			FILE *file = fopen(a, "r");
+			if (file == NULL) {
+				cout << "cat: No such file or directory" << endl;
+			}
+			else {
+				char ch;
+				while ((ch = fgetc(file)) != EOF) {
+					putchar(ch);
+				}
+				fclose(file);
+			}
+		}
 		
 		else if (!cmd.empty()) {
 			cout << "Unknown command." << endl;
@@ -122,27 +112,31 @@ void Terminal_DOS(){
 }
 
 void Terminal_logon(){
-	// 初始化密码数据库
-    user_to_password_db["root"] = "qqcat_terminal"; // 添加超管用户
-	user_available["root"] = 1;
+	// 从JSON文件加载用户数据
+    user_to_password_db = load_users_from_json(USERS_JSON_FILE);
+    
+    // 初始化用户可用性映射
+    for (auto& [user, password] : user_to_password_db) {
+        user_available[user] = true;
+    }
+	
 	// 核心逻辑
 	flush();
 	string user, pwd;
 	int attempt = 0;
 	cout << Terminal_name << " tty1" << '\n';
-	// cout << "user Login:";
 
 	while(1){
 		cout << "user Login: ";
-		cin >> user;
+		cin >> user; 
 		cout << "Password: ";
 		cin >> pwd;
 
-		if(user_to_password_db[user]==pwd)
+		if(user_available[user] && user_to_password_db[user] == hash_password(pwd))
 			break;
 		else {
 			printf("User or password incorrect.\n");
-			delay(1001);
+			delay(1000);
 			continue;
 		}
 	}

@@ -1,0 +1,16 @@
+[
+    "../users/test1.txt",
+    "../users/file1.txt",
+    "../users/test1/testfile1.txt",
+    "../users/test2/testfile2.txt",
+    "../users/test2.txt",
+    "../users/file2.txt",
+    "../system/SystemFunc.hpp",
+    "../system/users.json",
+    "../system/logon.cpp",
+    "../system/file_paths.json",
+    "../system/PIDs.json",
+    "../system/Terminal.cpp",
+    "../system/SearchFiles",
+    "../system/SearchFiles.cpp"
+]
